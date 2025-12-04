@@ -107,7 +107,9 @@ def est_lettre(char):
         >>> est_lettre('é')
         False
     """
-    return NotImplemented
+    
+    return char.isascii() and char.isalpha()
+
 
 
 
