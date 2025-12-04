@@ -145,7 +145,9 @@ def masquer_texte(texte):
         >>> masquer_texte("Ok")
         'Ok'
     """
-    return NotImplemented
+    if len(texte) <= 2:
+        return texte
+    return '*' * (len(texte) - 2) + texte[-2:]
 
 
 
