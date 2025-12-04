@@ -75,7 +75,24 @@ def calculer_similitude(texte1, texte2):
         >>> calculer_similitude("CHAT", "CH")
         0.5  # 2 lettres communes ("CH") divisé par max length (4)
     """
-    return NotImplemented
+    try:
+            longueur_max = max(len(texte1), len(texte2))
+            if longueur_max == 0:
+                return 0.0
+            
+            longueur_min = min(len(texte1), len(texte2))
+            total_correspondance = 0
+            
+            for i in range(longueur_min):
+                if texte1[i] == texte2[i]:
+                    total_correspondance += 1
+            
+            return total_correspondance / longueur_max
+            
+    except (TypeError, AttributeError):
+        print("Les arguments doivent être des chaînes de caractères")
+        return 0.0
+            
 
 
 
