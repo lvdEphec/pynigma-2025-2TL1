@@ -153,4 +153,25 @@ def dechiffrer_vigenere(message, cle):
         >>> dechiffrer_vigenere("RLVKD", "CLE")
         'PARIS'
     """
-    return NotImplemented
+    message = message.upper()
+    cle = cle.replace(" ", "").upper()
+    
+    resultat = []
+    index_cle = 0
+
+    for c in message:
+        # Si ce n'est pas une lettre A-Z, on le laisse tel quel
+        if not ('A' <= c <= 'Z'):
+            resultat.append(c)
+            continue
+
+        lettre_cle = cle[index_cle % len(cle)]
+        decalage = ord(lettre_cle) - ord('A')
+
+        # Déchiffrement
+        nouvelle_lettre = chr((ord(c) - ord('A') - decalage) % 26 + ord('A'))
+        resultat.append(nouvelle_lettre)
+
+        index_cle += 1
+
+    return "".join(resultat)
