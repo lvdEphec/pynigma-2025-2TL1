@@ -123,8 +123,14 @@ def detecter_langue(texte):
 # -------------------------------------------------------------------------
 
 
+def est_palindrome(texte: str) -> bool:
+    # Garder uniquement les lettres et ignorer la casse
+    lettres = [c.lower() for c in texte if c.isalpha()]
+    texte_normalise = "".join(lettres)
 
-def est_palindrome(texte):
+    # Vérifier palindrome
+    return texte_normalise == texte_normalise[::-1]
+
     """
     Vérifie si le texte est un palindrome (se lit pareil dans les deux sens).
     
