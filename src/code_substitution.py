@@ -100,7 +100,49 @@ def depuis_leet_speak(message):
 def chiffrer_vigenere(message, cle):
     """
     Chiffre avec la méthode de Vigenère (Code César à clé variable).
+
+    Algorithme :
+    Pour chaque lettre du message (index i) :
+    1. Si ce n'est pas une lettre, on l'ajoute tel quel au résultat.
+    2. Sinon :
+       a. On trouve la lettre correspondante dans la clé.
+          Attention : L'index dans la clé n'avance QUE si on chiffre une lettre.
+          Lettre clé = cle[index_cle % len(cle)]
+       b. Calculer le décalage : position de la lettre clé (A=0, B=1...).
+       c. Appliquer ce décalage à la lettre du message (comme César).
+       d. Incrémenter l'index de la clé.
+
+    Pré-requis :
+    - Le message et la clé doivent être mis en majuscules.
+    - La clé doit être "nettoyée" (retirer les espaces) avant de commencer.
+
+    Args:
+        message (str): Le texte à chiffrer.
+        cle (str): La clé de chiffrement (ex: "MUSIQUE").
+
+    Returns:
+        str: Le message chiffré.
+
+    Example:
+        >>> chiffrer_vigenere("PARIS", "CLE")
+        'RLVKD'
     """
+    return NotImplemented
+
+
+
+# -------------------------------------------------------------------------
+# ESPACE TAMPON POUR LIMITER LES RISQUES DE CONFLIT
+# -------------------------------------------------------------------------
+
+
+
+def dechiffrer_vigenere(message, cle):
+    """
+    Déchiffre un message Vigenère.
+    Même logique que le chiffrement, mais on soustrait le décalage.
+    """
+    # Normalisation
     message = message.upper()
     cle = cle.replace(" ", "").upper()
 
@@ -113,39 +155,15 @@ def chiffrer_vigenere(message, cle):
             resultat.append(char)
             continue
 
+        # Lettre correspondante dans la clé
         lettre_cle = cle[index_cle % n]
         decalage = ord(lettre_cle) - ord('A')
 
-        # Chiffrement type César
+        # Déchiffrement (on soustrait)
         base = ord('A')
-        valeur = (ord(char) - base + decalage) % 26
+        valeur = (ord(char) - base - decalage) % 26
         resultat.append(chr(base + valeur))
 
         index_cle += 1
 
     return "".join(resultat)
-
-
-# -------------------------------------------------------------------------
-# ESPACE TAMPON POUR LIMITER LES RISQUES DE CONFLIT
-# -------------------------------------------------------------------------
-
-
-
-def dechiffrer_vigenere(message, cle):
-    """
-    Déchiffre un message Vigenère.
-    Même logique que le chiffrement, mais on SOUSTRAIT le décalage au lieu de l'ajouter.
-
-    Args:
-        message (str): Le texte chiffré.
-        cle (str): La clé utilisée.
-
-    Returns:
-        str: Le message en clair.
-
-    Example:
-        >>> dechiffrer_vigenere("RLVKD", "CLE")
-        'PARIS'
-    """
-    return NotImplemented
