@@ -43,7 +43,16 @@ def obtenir_lettre_la_plus_frequente(texte):
         >>> obtenir_lettre_la_plus_frequente("Ba ba!")
         'B'  # (ou 'A', en cas d'égalité le premier trouvé suffit)
     """
-    return NotImplemented
+    total = compter_lettres(texte)
+
+    if not total:
+        return None
+
+    laLettreLaPlusPresente = max(total,key=total.get)
+
+
+
+    return laLettreLaPlusPresente
 
 
 
