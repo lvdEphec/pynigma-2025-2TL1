@@ -1,7 +1,7 @@
 def code_lettre(lettre, decalage):
     """
     Décale une SEULE lettre en utilisant le code César.
-    
+
     Règles métier :
     1. Si `lettre` n'est pas une lettre de l'alphabet (ex: '!', '1', ' '), elle est retournée inchangée.
     2. La lettre est d'abord convertie en MAJUSCULE.
@@ -16,45 +16,54 @@ def code_lettre(lettre, decalage):
         str: Le caractère résultant (toujours en majuscule si c'est une lettre).
 
     Examples:
-        >>> code_lettre('A', 1)
+        >> code_lettre('A', 1)
         'B'
-        >>> code_lettre('z', 1)
+        >> code_lettre('z', 1)
         'A'
-        >>> code_lettre('!', 5)
+        >> code_lettre('!', 5)
         '!'
     """
     return NotImplemented
 
 
-
 # -------------------------------------------------------------------------
 # ESPACE TAMPON POUR LIMITER LES RISQUES DE CONFLIT
 # -------------------------------------------------------------------------
-
 
 
 def chiffrer_cesar(message, decalage):
     """
     Chiffre une chaîne de caractères complète.
-    
+
     Cette fonction doit itérer sur chaque caractère du message et utiliser
     la fonction `code_lettre` pour le transformer.
 
-    Args:
-        message (str): Le texte à chiffrer.
-        decalage (int): Le décalage à appliquer.
+    Args :
+        message (str) : Le texte à chiffrer.
+        Décalage (int) : Le décalage à appliquer.
 
-    Returns:
-        str: Le message chiffré.
+    Returns :
+        str : Le message chiffré.
 
-    Examples:
-        >>> chiffrer_cesar("HAL", 1)
+    Exemples :
+        >> chiffrer_cesar("HAL", 1)
         'IBM'
-        >>> chiffrer_cesar("Hello World!", 1)
-        'IFMMP XPSME!'
+        >> chiffrer_cesar("Hello World !", 1)
+        'IFMMP XPSME !'
     """
-    return NotImplemented
+    resultat = ""
+    for caractere in message:
+        if caractere.isalpha():
+            # Convertit en majuscule et applique le décalage
+            base = ord('A')
+            position = ord(caractere.upper()) - base
+            nouvelle_position = (position + decalage) % 26
+            resultat += chr(base + nouvelle_position)
+        else:
+            # Garde les caractères non-alphabétiques inchangés
+            resultat += caractere
 
+    return print(resultat)
 
 
 # -------------------------------------------------------------------------
@@ -62,12 +71,11 @@ def chiffrer_cesar(message, decalage):
 # -------------------------------------------------------------------------
 
 
-
 def dechiffrer_cesar(message, decalage):
     """
     Inverse l'opération de chiffrement.
-    
-    Astuce : Mathématiquement, déchiffrer avec un décalage N revient à 
+
+    Astuce : Mathématiquement, déchiffrer avec un décalage N revient à
     chiffrer avec un décalage -N. Ne réécrivez pas la logique, réutilisez `chiffrer_cesar`.
 
     Args:
@@ -77,20 +85,16 @@ def dechiffrer_cesar(message, decalage):
     Returns:
         str: Le message en clair.
     """
-    return NotImplemented
-
-
-
+    return chiffrer_cesar(message, -decalage)
 # -------------------------------------------------------------------------
 # ESPACE TAMPON POUR LIMITER LES RISQUES DE CONFLIT
 # -------------------------------------------------------------------------
 
 
-
 def est_lettre(char):
     """
     Vérifie si un caractère est une lettre de l'alphabet standard (A-Z).
-    Pour cet exercice, on considère que les lettres accentuées NE SONT PAS 
+    Pour cet exercice, on considère que les lettres accentuées NE SONT PAS
     des lettres standards (pour simplifier les maths).
 
     Args:
@@ -100,15 +104,14 @@ def est_lettre(char):
         bool: True si c'est une lettre ASCII (A-Z ou a-z), False sinon.
 
     Examples:
-        >>> est_lettre('A')
+        >> est_lettre('A')
         True
-        >>> est_lettre('!')
+        >> est_lettre('!')
         False
-        >>> est_lettre('é')
+        >> est_lettre('é')
         False
     """
     return NotImplemented
-
 
 
 # -------------------------------------------------------------------------
@@ -116,16 +119,15 @@ def est_lettre(char):
 # -------------------------------------------------------------------------
 
 
-
 def nettoyer_accents(texte):
     """
     Prépare un texte brut pour le chiffrement.
-    
+
     Actions à effectuer :
-    1. Remplacer les caractères accentués par leur équivalent sans accent 
+    1. Remplacer les caractères accentués par leur équivalent sans accent
        (é -> e, ç -> c, etc.).
     2. Convertir tout le texte en MAJUSCULES.
-    
+
     Utilisez ce dictionnaire de correspondance :
     accs = {'É':'E', 'È':'E', 'Ê':'E', 'À':'A', 'Ù':'U', 'Ç':'C', 'Ô':'O', 'Ò':'O', 'Î':'I', 'Ï':'I'}
 
@@ -136,7 +138,7 @@ def nettoyer_accents(texte):
         str: Le texte nettoyé.
 
     Example:
-        >>> nettoyer_accents("Héllò")
+        >> nettoyer_accents("Héllò")
         'HELLO'
     """
     return NotImplemented
