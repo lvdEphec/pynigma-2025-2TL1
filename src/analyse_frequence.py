@@ -1,7 +1,7 @@
 def compter_lettres(texte):
     """
     Compte le nombre d'apparitions de chaque lettre dans le texte.
-    
+
     Règles :
     - Ignorer les espaces, chiffres et caractères spéciaux.
     - Convertir tout en majuscules avant de compter.
@@ -16,8 +16,14 @@ def compter_lettres(texte):
         >>> compter_lettres("Ba ba!")
         {'B': 2, 'A': 2}
     """
-    return NotImplemented
 
+    dico_of_letter = {}
+    list_of_letter = list(texte.upper())
+    for i in list_of_letter:
+        if i not in dico_of_letter.keys() and i.isalpha() :
+            number_of_letter = list_of_letter.count(i)
+            dico_of_letter.update(dict([tuple([i,number_of_letter])]))
+    return dico_of_letter
 
 
 # -------------------------------------------------------------------------
