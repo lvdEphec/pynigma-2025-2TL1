@@ -24,7 +24,18 @@ def code_miroir(message):
         >>> code_miroir("Hello")
         'SVOOL'
     """
-    return NotImplemented
+
+    resultat = ""
+
+    for k in message.upper():
+        if 'A' <= k <= 'Z':
+            pos = ord(k) - ord('A')
+            miroir = chr(ord('A') + (25 - pos))
+            resultat += miroir
+        else:
+            resultat += k 
+
+    return resultat
 
 
 
