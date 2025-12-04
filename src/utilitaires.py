@@ -52,7 +52,11 @@ def formater_en_blocs(texte, taille):
         >>> formater_en_blocs("12345", 2)
         '12 34 5'
     """
-    return NotImplemented
+    blocs = []
+    for i in range(0, len(texte), taille):
+        blocs.append(texte[i:i + taille])
+    return " ".join(blocs)
+
 
 
 
