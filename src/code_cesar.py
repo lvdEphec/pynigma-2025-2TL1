@@ -77,9 +77,17 @@ def dechiffrer_cesar(message, decalage):
     Returns:
         str: Le message en clair.
     """
-    return NotImplemented
+    alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    message=message.upper()
+    message_dechiffre=""
 
-
+    for char in message:
+        if char in alphabet:
+            index=(alphabet.index(char)-decalage)%26
+            message_dechiffre+=alphabet[index]
+        else:
+            message_dechiffre+=char
+    return message_dechiffre
 
 # -------------------------------------------------------------------------
 # ESPACE TAMPON POUR LIMITER LES RISQUES DE CONFLIT
