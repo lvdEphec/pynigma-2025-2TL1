@@ -1,23 +1,15 @@
+from collections import Counter
+import string
+
 def compter_lettres(texte):
     """
     Compte le nombre d'apparitions de chaque lettre dans le texte.
-    
-    Règles :
-    - Ignorer les espaces, chiffres et caractères spéciaux.
-    - Convertir tout en majuscules avant de compter.
-
-    Args:
-        texte (str): Le texte à analyser.
-
-    Returns:
-        dict: Un dictionnaire {'LETTRE': nombre_occurences}.
-
-    Example:
-        >>> compter_lettres("Ba ba!")
-        {'B': 2, 'A': 2}
     """
-    return NotImplemented
+    # Garder uniquement les lettres et convertir en majuscules
+    lettres = [c.upper() for c in texte if c.upper() in string.ascii_uppercase]
 
+    # Compter les occurrences
+    return dict(Counter(lettres))
 
 
 # -------------------------------------------------------------------------
