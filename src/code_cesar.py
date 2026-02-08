@@ -1,4 +1,21 @@
 def code_lettre(lettre, decalage):
+    liste_lettre = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+
+    try:
+        liste_lettre.index(lettre.lower())
+    except:
+        print(lettre)
+        return
+
+    lettre = lettre.lower()
+    pos = liste_lettre.index(lettre)
+    pos_cesar = pos + decalage
+    while pos_cesar > 25:
+        pos_cesar = pos_cesar - 26
+
+    lettre_final = liste_lettre[pos_cesar].upper()
+    print(lettre_final)
+    
     """
     Décale une SEULE lettre en utilisant le code César.
     
